@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PostMoon</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron">
+        <p>Pass: <%= pass %></p>
+        <p>Fail: <%= fail %></p>
+        <hr>
+        <% errores.forEach(function (error) { %>
+          <div>
+            <h3><%= error.filename%></h3>
+            <h4><%= error.test %></h4>
+            <p><%= error.error %></p>
+          </div>
+        <% }) %>
+    </div>
+  </body>
+</html>
