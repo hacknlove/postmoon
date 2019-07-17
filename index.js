@@ -1,3 +1,5 @@
+/* global pm */
+
 global.__root = __dirname + '/tests'
 
 global.pm = require('./postman')
@@ -21,5 +23,5 @@ app.get('/', function(req, res) {
   res.render('index', informe)
 })
 app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port)
+  console.log('Your app is listening on port ' + process.env.PORT)
 })
