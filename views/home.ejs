@@ -6,7 +6,11 @@
       Esta va a ser la portada:
       
       <% test.forEach( (e) => { %>
-        <li><a href="/<%= e %>"><%= e %></a></li>
+        <li>
+          <a href="/<%= e %>">
+            <%= e %>
+          </a>
+      </li>
       <% }) %>
     </h1>
   </body>  

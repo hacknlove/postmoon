@@ -14,25 +14,26 @@ files.forEach(file => {
   require('./' + file)
 })
 
-var informe = pm.run()
-
 var express = require('express')
 var app = express()
 app.set('view engine', 'ejs')
-app.get('/', function(req, res) {
-  res.render('index', informe)
-})
 
-
-app.get('/home', function (req, res) {
+app.get('/', function (req, res) {
   
   var archivos = glob.sync('tests/*')
   
-  archivos.map (function )
+  var archivos2 = archivos.map (function (elem) {
+    return elem.substring(6)
+  })
   
   res.render('home', {
-    test: archivos
+    test: archivos2
   })
+})
+
+app.get('/:name', (req, res, next) => {
+  var informe = pm.run(req.params.name)
+  res.render('index', informe)
 })
 
 app.listen(process.env.PORT, function() {
