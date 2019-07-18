@@ -1,5 +1,3 @@
-/*globals pm*/  
-
 var response = pm.response.json().data;
 
 pm.test("Los names estan ordenados por orden desc", function () {
