@@ -2,7 +2,7 @@
 const chai = require('chai')
 
 const environment = {}
-const tests = []
+const tests = {}
 
 function getAbsoluteDir () {
   var a = new Error()
@@ -22,7 +22,11 @@ exports.getEnvironment = function (variable) {
 }
 
 exports.test = function (title, callback) {
-  tests.push([getFilename(), title, callback])
+  tests[getFilename()] = {
+    title: title,
+    callback: callback
+  }
+ // ([getFilename(), title, callback])
 }
 
 exports.expect = chai.expect
