@@ -1,3 +1,5 @@
+/* global pm */
+
 global.__root = __dirname + '/tests'
 
 global.pm = require('./postman')
