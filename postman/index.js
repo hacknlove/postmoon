@@ -22,11 +22,12 @@ exports.getEnvironment = function (variable) {
 }
 
 exports.test = function (title, callback) {
-  tests[getFilename()] = {
-    title: title,
-    callback: callback
-  }
- // ([getFilename(), title, callback])
+  var name = getFilename()
+  tests[name] = tests[name] || []
+  tests[name].push({
+    title,
+    callback
+  })
 }
 
 exports.expect = chai.expect
@@ -37,20 +38,19 @@ exports.response = {
   }
 }
 
-exports.run = function () {
+exports.run = function (name) {
   var informe = {
     pass: 0,
     fail: 0,
     errores: []
   }
-  tests.forEach(test => {
+  tests[name].forEach(test => {
     try {
-      test[2]()
+      test.callback()
       informe.pass++
     } catch (e) {
       informe.errores.push({
-        filename: test[0],
-        test: test[1],
+        test: test.title,
         error: e.message
       })
       informe.fail++
