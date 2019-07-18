@@ -3,7 +3,11 @@
   </head>
   <body>
     <h1>
-      Esta va a ser la portada
+      Esta va a ser la portada:
+      
+      <% test.forEach( (e) => { %>
+        <li><a href="/<%= e %>"><%= e %></a></li>
+      <% }) %>
     </h1>
   </body>  
 </html>

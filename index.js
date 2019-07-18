@@ -25,7 +25,14 @@ app.get('/', function(req, res) {
 
 
 app.get('/home', function (req, res) {
-  res.render('home')
+  
+  var archivos = glob.sync('tests/*')
+  
+  archivos.map (function )
+  
+  res.render('home', {
+    test: archivos
+  })
 })
 
 app.listen(process.env.PORT, function() {
