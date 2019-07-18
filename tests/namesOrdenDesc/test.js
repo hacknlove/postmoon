@@ -14,3 +14,9 @@ pm.test("Los names estan ordenados por orden desc", function () {
         return true
     })).to.be.true
 });
+
+pm.test("expect dentro", () => {
+  response.data.forEach(elemento => {
+    pm.expect(elemento.username).to.be.eql('perico')
+  })
+})
