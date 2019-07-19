@@ -1,3 +1,13 @@
-{
-  "ok": true
-}
+    "status": 200,
+    "data": {
+        "count": 1,
+        "data": [
+            {
+                "id": 1,
+                "slot": {
+                    "id": 1,
+                    "name": "MEX - EU - 2 - Referencia (HSA)",
+                    "client": {
+                        "id": 2,
+                        "name": "99999"
+                    }
