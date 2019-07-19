@@ -9,8 +9,8 @@ pm.test("se devuelve el slot buscado por el nombre", function () {
   response.data.data.forEach(subslot => {
     return
     pm.expect(subslot.slot).to.have.property('client')
-    pm.expect(subslot.slot.client.name).to.be.eql("99999")    
+    pm.expect(subslot.slot.client.name).to.be.eql("66666")    
   })
-  pm.expect(response.data.data.every(subslot => subslot.slot.client.name)).to.be.eql("99999") 
+//  pm.expect(response.data.data.every(subslot => subslot.slot.client.name)).to.be.eql("99999") 
 
 });
