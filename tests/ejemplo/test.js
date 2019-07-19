@@ -1,13 +1,13 @@
-var response = pm.response.json().data;
+var response = pm.response.json();
 
 pm.test("Status code is 200", function () {
-    pm.response.to.have.status(200);
+  //se te olvidó el expect
+    pm.expect(response.status).to.be.eql(200);
 });
 
 pm.test("se devuelve el slot buscado por el nombre", function () {
-  console.log(response)
-/*  response.data.forEach(subslot => {
+  response.data.data.forEach(subslot => {
+    pm.expect(subslot.slot).to.have.property('client')
     pm.expect(subslot.slot.client.name).to.be.eql("99999")
   })
-*/
 });
