@@ -24,7 +24,11 @@
                 "id": 2,
                 "slot": {
                     "id": 2,
-                    "name": "ARG - EU - 3"
+                    "name": "ARG - EU - 3",
+                    "client": {
+                        "id": 2,
+                        "name": "99999"
+                    }
                 },
                 "fwdCir": 512,
                 "fwdMir": 60,
@@ -37,7 +41,11 @@
                 "id": 3,
                 "slot": {
                     "id": 2,
-                    "name": "ARG - EU - 3"
+                    "name": "ARG - EU - 3",
+                    "client": {
+                        "id": 2,
+                        "name": "99999"
+                    }
                 },
                 "fwdCir": 512,
                 "fwdMir": 6,

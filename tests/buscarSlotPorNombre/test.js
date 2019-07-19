@@ -23,12 +23,9 @@ pm.test("se devuelve el slot buscado por el nombre", function () {
 
 
 pm.test("se devuelve el slot buscado por el nombre", function () {
-    pm.expect(response.data.every(subslot => 
-    
-      subslot.slot.client.name == "99999")).to.be.true;
-    
-  
-  /*pm.expect(response.data.every(subslot => subslot.slot.client.name)).
-    to.be.eql("99999") */
-
+    pm.expect(response.data.every(subslot => {
+      pm.expect(subslot.slot.client.name).to.be.eql("99999")    
+      return true
+    })).to.be.true;
 });
+
