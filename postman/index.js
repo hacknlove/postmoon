@@ -23,6 +23,7 @@ exports.getEnvironment = function (variable) {
 
 exports.test = function (title, callback) {
   var name = getAbsoluteDir().substr(11)
+  console.log(name)
   tests[name] = tests[name] || []
   tests[name].push({
     title,
