@@ -7,7 +7,6 @@ pm.test("Status code is 200", function () {
 
 pm.test("se devuelve el slot buscado por el nombre", function () {
   response.data.data.forEach(subslot => {
-    return
     pm.expect(subslot.slot).to.have.property('client')
     pm.expect(subslot.slot.client.name).to.be.eql("66666")    
   })
