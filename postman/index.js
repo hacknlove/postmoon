@@ -23,6 +23,7 @@ exports.getEnvironment = function (variable) {
 
 exports.test = function (title, callback) {
   var name = getFilename()
+  console.log(name)
   tests[name] = tests[name] || []
   tests[name].push({
     title,
@@ -44,6 +45,7 @@ exports.run = function (name) {
     fail: 0,
     errores: []
   }
+  console.log(name)
   tests[name].forEach(test => {
     try {
       test.callback()
