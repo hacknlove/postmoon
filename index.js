@@ -20,6 +20,6 @@ app.set('view engine', 'ejs')
 app.get('/', function(req, res) {
   res.render('index', informe)
 })
-app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + process.env.PORT)
+app.listen(process.env.PORT || 8080, function() {
+  console.log('Your app is listening on port ' + process.env.PORT || 8080)
 })
