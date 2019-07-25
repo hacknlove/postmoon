@@ -1,9 +1,9 @@
 /*globals pm*/
 
-//cambiar ceillingFwd de 10 a 20 (numero)
+//cambiar stoptime de 19 a 25 (numero)
 pm.test(" maximunConcurrentMultimediaSession de perfil se ha cambiado correctamente", function () {
     pm.expect(response.id).to.eql(pm.environment.get("PerfilId"));
-    pm.expect(response.ceillingFwd).to.eql(20);
+    pm.expect(response.quote).to.eql(25);
 
        
 });
