@@ -1,5 +1,7 @@
 /*globals pm*/
 
+var response = response.json().data;
+
 //cambiar la id y "separeted" por algo (parece que solo hay 2 opciones)
 pm.test(" profilesSlaType de perfil se ha cambiado correctamente", function () {
     pm.expect(response.id).to.eql(pm.environment.get("PerfilId"));
