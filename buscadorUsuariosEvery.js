@@ -14,9 +14,7 @@ pm.test('Devuelve el usuario indicado', () => {
 }) */
 
 const datos = pm.response.json().data
-console.log(datos)
 const roleId = 3 //Number(pm.environment.get('roleId'))
-//const userRole = datos.data.find(user => user.role.id === roleId)
 
 pm.test('Devuelve ', () => {
     pm.expect(datos.length === 0).to.be.false
@@ -24,4 +22,7 @@ pm.test('Devuelve ', () => {
 
 pm.test('Todos los usuarios encontrados tienen el mismo rol', () => {
     pm.expect(datos.every(user => user.role[0].id == roleId)).to.be.true
-})
+}) 
+
+//Fijarse si role es un array o no...
+//fijarse si la respuesta tiene dos data o solo uno
