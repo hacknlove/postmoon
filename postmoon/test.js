@@ -6,8 +6,6 @@ function preRequest (req, res, next) {
   try {
     require(`../${req.params[0]}.pre.js`)
   } catch (e) {
-    console.log('PRE')
-    console.log(e)
     if (e.code !== 'MODULE_NOT_FOUND') {
       return res.render('testError', {
         titulo: 'Pre-request script ERROR',
@@ -22,7 +20,6 @@ function response (req, res, next) {
   try {
     pm._setResponse(require(`../${req.params[0]}.json`))
   } catch (e) {
-    console.log(e)
     if (e.code !== 'MODULE_NOT_FOUND') {
       return res.render('testError', {
         titulo: 'JSON error',
@@ -37,7 +34,6 @@ function loadTest (req, res, next) {
   try {
     require(`../${req.params[0]}.js`)
   } catch (e) {
-    console.log(e)
     if (e.code !== 'MODULE_NOT_FOUND') {
       return res.render({
         preError: e
