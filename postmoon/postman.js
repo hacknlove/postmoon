@@ -45,13 +45,15 @@ exports._run = function (name) {
 
 
 
-exports.setEnvironment = function (variable, value) {
-  environment[testName][variable] = value
+exports.environment = {
+  get (variable) {
+    return environment[testName][variable]
+  },
+  set (variable, value) {
+    environment[testName][variable] = value
+  }
 }
 
-exports.getEnvironment = function (variable) {
-  return environment[testName][variable]
-}
 
 exports.test = function (title, callback) {
   tests[testName].push({
