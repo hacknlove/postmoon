@@ -17,11 +17,11 @@ const datos = pm.response.json().data
 const roleId = 3 //Number(pm.environment.get('roleId'))
 
 pm.test('Devuelve ', () => {
-    pm.expect(datos.data.length === 0).to.be.false
+    pm.expect(datos.length === 0).to.be.false
 })
 
 pm.test('Todos los usuarios encontrados tienen el mismo rol', () => {
-    pm.expect(datos.data.every(user => user.role[0].id == roleId)).to.be.true
+    pm.expect(datos.every(user => user.role[0].id == roleId)).to.be.true
 }) 
 
 //Fijarse si role es un array o no...
