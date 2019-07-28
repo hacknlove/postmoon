@@ -1,1 +1,1 @@
-pm.setEnvironment('roleId', 3)
+pm.environment.set('roleId', 3)
