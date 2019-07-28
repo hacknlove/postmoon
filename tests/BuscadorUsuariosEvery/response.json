@@ -1,0 +1,26 @@
+{
+    "status": 200,
+    "data": [
+       
+        {
+            "username": "99999_user1",
+            "email": "user1@empresaz.com",
+            "role": [
+                {
+                    "id": 3,
+                    "name": "ROLE_SLOT"
+                }
+            ]
+        },
+        {
+            "username": "88888_user1",
+            "email": "user1@empresay.com",
+            "role": [
+                {
+                    "id": 3,
+                    "name": "ROLE_SLOT"
+                }
+            ]
+        }
+    ]
+}
