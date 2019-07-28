@@ -14,7 +14,7 @@ pm.test('Devuelve el usuario indicado', () => {
 }) */
 
 const datos = pm.response.json().data
-const roleId = 3 //Number(pm.environment.get('roleId'))
+const roleId = Number(pm.environment.get('roleId'))
 
 pm.test('Devuelve ', () => {
     pm.expect(datos.length === 0).to.be.false

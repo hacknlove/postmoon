@@ -35,8 +35,9 @@ function loadTest (req, res, next) {
     require(`../${req.params[0]}.js`)
   } catch (e) {
     if (e.code !== 'MODULE_NOT_FOUND') {
-      return res.render({
-        preError: e
+      return res.render('testError', {
+        titulo: 'Error de sintaxis',
+        error: e
       })
     }
   }
