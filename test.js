@@ -25,7 +25,7 @@ function getResponses (req, res, next) {
     r.forEach(path => {
       const name = path.match(/\.([^.]*).json$/) || [null, 'default']
       try {
-        req.responses[name[1]] = require(`../${path}`)
+        req.responses[name[1]] = require(`../../${path}`)
       } catch (e) {
         if (e.code !== 'MODULE_NOT_FOUND') {
           return res.render('error', {
