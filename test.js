@@ -1,7 +1,7 @@
 const glob = require('glob')
 const runner = require('./runner')
 const { readFile } = require('fs')
-const packageJson = require('../package.json')
+const packageJson = require('../../package.json')
 
 function getEnvironments (req, res, next) {
   req.global = {

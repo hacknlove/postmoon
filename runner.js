@@ -1,5 +1,4 @@
 const cloneDeep = require('clone-deep')
-const packageJson = require('../../package.json')
 const vm = require('vm')
 const chai = require('chai')
 const { readFileSync } = require('fs')
@@ -63,35 +62,4 @@ module.exports = function runner (options) {
     tests
   }
 
-}
-
-exports._initGlobal = function _initGlobal () {
-  global = {
-    ...packageJson.global
-  }
-}
-
-exports._initEnvironment = function _initGlobal () {
-  environment = {
-    ...packageJson.environment
-  }
-}
-
-exports._setResponse = function _setResponse (r) {
-  response = r
-}
-exports._setStatus = function _setStatus (stat) {
-  status = stat
-}
-
-exports._run = function () {
-  var informe = {
-    pass: 0,
-    fail: 0,
-    tests: []
-  }
-  tests.forEach(test => {
-
-  })
-  return informe
 }
