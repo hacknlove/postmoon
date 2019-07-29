@@ -1,19 +1,19 @@
-<html>
-  <head>
-      <link rel="stylesheet" href="/style.css">
-  </head>
-  <body>
-    <h1>
-      PostMoon
-    </h1>
+<%- include('header') %>
 
-      <% test.forEach( (e) => { %>
-        <li>
-          <a href="/test/<%= e %>">
-            <%= e %>
-          </a>
-      </li>
-      <% }) %>
-    </h1>
-  </body>
-</html>
+<header>
+  <span>
+      PostMoon - Test your test
+  </span>
+</header>
+
+<ul class="testLists">
+  <% test.forEach( (e) => { %>
+    <li>
+      <a href="/test/<%= e %>">
+        <%= e %>
+      </a>
+  </li>
+  <% }) %>
+</ul>
+
+<%- include('footer') %>

@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>PostMoon</title>
-    <style>
-    </style>
-  </head>
-  <body>
-    <div class="jumbotron">
-        <a href="/">Atrás</a>
-        <p>Pass: <%= pass %></p>
-        <p>Fail: <%= fail %></p>
-        <hr>
-        <% errores.forEach(function (error) { %>
-          <div>
-            <h3><%= error.filename%></h3>
-            <h4><%= error.test %></h4>
-            <p><%= error.error %></p>
-          </div>
-        <% }) %>
+<%- include('header') %>
+
+<header>
+  <span class="prueba <%= fail ? 'rojo' : 'verde' %>">
+    <%= name %>
+  </span>
+  <a href="/">×</a>
+</header>
+
+<div class="resumen">
+    <p class="<%= pass ? 'verde' : ''%>">Pass: <%= pass %></p>
+    <p class="<%= fail ? 'rojo' : ''%>">Fail: <%= fail %></p>
+</div>
+
+<div class="informe">
+  <% tests.forEach(function (test) { %>
+    <div>
+      <h3 class="<%=
+        test.error ? 'rojo' : 'verde'
+      %>"><%= test.test %></h3>
+      <% if (test.error) { %>
+        <p class="rojo">
+          <%= test.error.message %>
+        </p>
+      <% } %>
     </div>
-  </body>
-</html>
+  <% }) %>
+</div>
+
+
+
+<%- include('footer') %>

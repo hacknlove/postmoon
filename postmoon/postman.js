@@ -1,6 +1,7 @@
 /* global __root */
 const chai = require('chai')
 
+const global = {}
 const environment = {}
 const tests = {}
 const responses = {}
@@ -23,19 +24,23 @@ exports._setStatus = function _setStatus (stat) {
 }
 exports._run = function (name) {
   var informe = {
+    name,
     pass: 0,
     fail: 0,
-    errores: []
+    tests: []
   }
   testName = name
   tests[name].forEach(test => {
     try {
       test.callback()
+      informe.tests.push({
+        test: test.title
+      })
       informe.pass++
     } catch (e) {
-      informe.errores.push({
+      informe.tests.push({
         test: test.title,
-        error: e.message
+        error: e
       })
       informe.fail++
     }
@@ -47,10 +52,22 @@ exports._run = function (name) {
 
 exports.environment = {
   get (variable) {
-    return environment[testName][variable]
+    if (environment[testName][variable] !== undefined) {
+      return environment[testName][variable]
+    }
+    return global[variable]
   },
   set (variable, value) {
     environment[testName][variable] = value
+  }
+}
+
+exports.global = {
+  get (variable) {
+    return global[variable]
+  },
+  set (variable, value) {
+    global[variable] = value
   }
 }
 

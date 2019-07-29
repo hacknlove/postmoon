@@ -1,0 +1,96 @@
+body {
+  background-image: url(backgorund.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 3rem;
+  box-sizing: border-box;
+}
+
+header {
+  position: fixed;
+  background: #000a;
+  height: 3rem;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 2px 0px #000a;
+}
+.prueba {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+.verde {
+  color: lightgreen;
+}
+.rojo {
+  color: red;
+}
+
+header a {
+  color: white;
+  position: absolute;
+  right: 1rem;
+  text-decoration: none;
+}
+
+ul.testLists {
+  background: #fffa;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  list-style: none;
+  box-shadow: 0 0 2px 0px #0001;
+}
+ul.testLists>li {
+  margin-bottom: 10px;
+}
+
+ul.testLists>li>a {
+  text-decoration: none;
+  color: #666;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+ul.testLists>li>a:hover {
+  color: black;
+}
+
+.resumen {
+  color: white;
+  background: #000a;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  list-style: none;
+  box-shadow: 0 0 2px 0px #0001;
+
+  display: flex;
+  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.informe {
+  background: #fffa;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  list-style: none;
+  box-shadow: 0 0 2px 0px #0001;
+}
+.informe pre {
+  white-space: pre-wrap;
+}
+.informe .verde {
+  color: green;
+}

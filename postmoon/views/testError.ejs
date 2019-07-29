@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>PostMoon</title>
-    <style>
-    </style>
-  </head>
-  <body>
-    <a href="/">Atrás</a>
-    <h1><%= titulo %></h1>
-    <code><pre><%= error %></pre></code>
-    <code><pre><%= error.stack %></pre></code>
-  </body>
-</html>
+<%- include('header') %>
+
+<a href="/">Atrás</a>
+<h1><%= titulo %></h1>
+<code><pre><%= error %></pre></code>
+<code><pre><%= error.stack %></pre></code>
+
+<%- include('footer') %>
