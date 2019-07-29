@@ -1,0 +1,51 @@
+<%- include('header') %>
+
+<header>
+  <span class="prueba <%= result.fail ? 'rojo' : 'verde' %>">
+    <%= filename %>
+  </span>
+  <a href="/">×</a>
+</header>
+
+
+<div class="informe">
+  <div class="cabecero">
+    <h2 class="<%= result.fail ? 'rojo' : 'verde' %>">Scenarios: <%= Object.keys(result.tests).length %></h2>
+    <div>
+      <p class="<%= result.pass ? 'verde' : ''%>"><%= result.pass %>✔</p>
+      <p class="<%= result.fail ? 'rojo' : ''%>"><%= result.fail %>✗</p>
+    </div>
+  </div>
+</div>
+
+<% Object.keys(result.tests).forEach(key => {
+  var test = result.tests[key]
+%>
+  <div class="informe">
+    <div class="cabecero">
+      <h2 class="<%= test.fail ? 'rojo' : 'verde' %>"><%= key %></h2>
+      <div>
+        <p class="<%= test.pass ? 'verde' : ''%>"><%= test.pass %>✔</p>
+        <p class="<%= test.fail ? 'rojo' : ''%>"><%= test.fail %>✗</p>
+      </div>
+    </div>
+    <% if (test.tests.length) { %>
+      <ul>
+        <% test.tests.forEach(function (test) { %>
+          <li class="<%=
+            test.error ? 'rojo' : 'verde'
+          %>"> <%= test.test %>
+            <% if (test.error) { %><br>
+              <code class="rojo"><%= test.error.message %></code>
+            <% } %>
+            </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+  <% }) %>
+
+
+
+
+<%- include('footer') %>

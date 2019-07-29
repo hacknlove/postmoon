@@ -3,20 +3,31 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node postmoon/index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "PORT=8080 nodemon index.js"
+  },
+  "bin": {
+    "postmoon": "./index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
+    "clone-deep": "^4.0.1",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "glob": "^7.1.4"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "nodemon": "^1.19.1"
+  },
+  "global": {
+    "variable": "Value"
+  },
+  "environment": {
+    "roleId": "3"
   }
 }

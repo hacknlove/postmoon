@@ -1,0 +1,14 @@
+<%- include('header') %>
+
+<header>
+    <span class="prueba rojo">
+      <%= filename %>
+    </span>
+    <a href="/">×</a>
+  </header>
+  <div class="informe">
+    <code><pre><%= error.message %></pre></code>
+    <code><pre><%= error.stack %></pre></code>
+  </div>
+
+<%- include('footer') %>

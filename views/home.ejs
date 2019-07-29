@@ -1,0 +1,26 @@
+<%- include('header') %>
+
+<header>
+  <span>
+      PostMoon tests your tests
+  </span>
+</header>
+
+<% if (test.length) { %>
+   <ul class="testLists">
+   <% test.forEach( (e) => { %>
+      <li>
+        <a href="/test/<%= e %>">
+          <%= e %>
+        </a>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else { %>
+    <div class="informe">
+      <h1>Write some tests</h1>
+    </div>
+  <% } %>
+
+
+<%- include('footer') %>

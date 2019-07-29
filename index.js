@@ -1,4 +1,4 @@
-global.pm = require('./postman')
+#!/usr/bin/env node
 
 const app = require('./express')
 
