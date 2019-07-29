@@ -1,16 +1,28 @@
 {
   "name": "postmoon",
-  "version": "2.0.0",
-  "description": "",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "PORT=8080 nodemon index.js"
-  },
+  "version": "2.0.1",
+  "description": "Run your postman tests without postman and without server.",
+  "keywords": [
+    "testing",
+    "pair programming",
+    "glitch",
+    "postman"
+  ],
   "bin": {
     "postmoon": "./index.js"
   },
-  "author": "",
+  "scripts": {
+    "start": "PORT=8080 nodemon index.js"
+  },
+  "author": {
+    "name": "Antonio Fernández Porrúa",
+    "email": "antonio@hacknlove.org",
+    "url": "https://pykiss.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hacknlove/postmoon.git"
+  },
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
@@ -23,11 +35,5 @@
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "nodemon": "^1.19.1"
-  },
-  "global": {
-    "variable": "Value"
-  },
-  "environment": {
-    "roleId": "3"
   }
 }
