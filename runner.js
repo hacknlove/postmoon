@@ -1,5 +1,5 @@
 const cloneDeep = require('clone-deep')
-const packageJson = require('../package.json')
+const packageJson = require('../../package.json')
 const vm = require('vm')
 const chai = require('chai')
 const { readFileSync } = require('fs')
