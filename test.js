@@ -1,14 +1,38 @@
 const glob = require('glob')
 const runner = require('./runner')
 const { readFile } = require('fs')
-const packageJson = require('../../package.json')
+
+try {
+  var globalEnvironment = require('../../global.json')
+} catch (e) {
+  globalEnvironment = {}
+  if (e.code !== 'MODULE_NOT_FOUND') {
+    global.error = {
+      filename: 'global.json',
+      error: e
+    }
+  }
+}
+
+try {
+  var environment = require('../../environment.json')
+} catch (e) {
+  environment = {}
+  if (e.code !== 'MODULE_NOT_FOUND') {
+    global.error = {
+      filename: 'global.json',
+      error: e
+    }
+  }
+}
+
 
 function getEnvironments (req, res, next) {
   req.global = {
-    ...packageJson.global
+    ...globalEnvironment
   }
   req.environment = {
-    ...packageJson.environment
+    ...environment
   }
   next()
 }
