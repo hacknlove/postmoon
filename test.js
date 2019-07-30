@@ -107,7 +107,7 @@ function render (req, res, next) {
 module.exports = [
   getGlobal,
   getEnvironment,
-  getResponses,
+  getScenarios,
   getTest,
   executeTest,
   render
