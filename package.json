@@ -1,6 +1,6 @@
 {
   "name": "postmoon",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Run your postman tests without postman and without server.",
   "keywords": [
     "testing",

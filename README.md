@@ -1,3 +1,5 @@
+# Warning: ALFA status, Not stable at all, everything can change.
+
 # postmoon
 
 ## Startup
@@ -34,16 +36,85 @@ cd postmoon-example
 `npx nodemon -e js,json --exec 'npx postmoon'`
 ```
 
-## Write tests
+## tests
 
-Create your test's files in the root folder of your project.
+Write your tests in files, you can all the postman's API.
 
-* `foo.js` contains the test source for the test named `foo`
-* `foo.json` contains the mocked response for the `default` scenario of the test `foo`
-* `foo.bar.json` contains the mocked response for the `bar` scenario of the test `foo`
+If postmoon lacks of some postman's API characteristic you would like to use, please open an issue at [issues](https://github.com/hacknlove/postmoon/issues)
 
-## `global` and `environment` variables
+You cannot use the filenames `global.js`, `environment.js` and `requests.js`
+
+## environment variables
 
 You can set your `global` and `environment` variables in the files `global.json` and `environment.json`
 
-Each scenario starts with a fresh and clean copy of the variables.
+Each each scenario starts with a fresh and clean copy of the variables.
+
+```
+{
+  "variableName": "variableValue",
+  "and": "so on"
+}
+```
+
+## requests
+
+If you want to use `pm.sendRequest()` you can set request globaly by the file `requests.js`
+
+```
+var requests = [
+  {
+    url: /regexp/,
+    code: 200
+    response: {
+      ok: true
+    }
+  },
+  {
+    url: /regexp/,
+    handler (request) {
+      return {
+        code: 200
+        response: {
+          ok: true
+        }
+      }
+    }
+  }
+]
+```
+
+
+## scenarios
+
+Write the scenarios that are going to be used to each test your tests in a `.json` file with the same name as the test `.js` file
+
+```
+{
+  "global": {
+  },
+  "environment": {
+  },
+  pass: 3,
+  fail: 0,
+  requests: [
+
+  ],
+  "scenarios": {
+    "scenarioName": {
+      "global": {
+      },
+      "environment": {
+      },
+      pass: 3,
+      fail: 0,
+      requests: [
+
+      ],
+      response: {
+
+      }
+    }
+  }
+}
+```
