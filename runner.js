@@ -15,7 +15,6 @@ module.exports = function runner (options) {
       filename: options.filename + '.js'
     })
   } catch (e) {
-    console.log(e)
     return {
       error: {
         message: e.message,
@@ -36,16 +35,31 @@ module.exports = function runner (options) {
       pass: 0,
       tests: [],
       status: options.scenarios[key].status || 200,
-      requests: optiones.scenarios[key].requests || {},
-      environment: cloneDeep(options.environment),
-      global: cloneDeep(options.global),
-      response: options.scenarios[key].response
+      requests: options.scenarios[key].requests || {},
+      environment: options.scenarios[key].environment || cloneDeep(options.environment),
+      global: options.scenarios[key].global || cloneDeep(options.global),
+      json: options.scenarios[key].response || {}
     }
 
     vm.createContext(sandbox)
 
     pmScript.runInContext(sandbox)
-    script.runInContext(sandbox)
+    try {
+      script.runInContext(sandbox)
+    } catch (e) {
+      sandbox.tests.push({
+        test: 'script',
+        error: e
+      })
+      tests[key] = {
+        pass: sandbox.pass,
+        fail: sandbox.fail + 1,
+        tests: sandbox.tests
+      }
+      fail += sandbox.fail + 1
+      pass += sandbox.pass
+      return
+    }
 
     tests[key] = {
       expected: {
@@ -56,7 +70,7 @@ module.exports = function runner (options) {
         pass: sandbox.pass,
         fail: sandbox.fail
       },
-      
+
       tests: sandbox.tests
     }
     fail += sandbox.fail

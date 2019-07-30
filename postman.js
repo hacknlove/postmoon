@@ -26,7 +26,6 @@ const pm = {
       })
       pass++
     } catch (e) {
-      console.log(e)
       tests.push({
         test: title,
         error: e
@@ -37,7 +36,7 @@ const pm = {
   response: {
     status: chai.expect(status),
     json () {
-      return response
+      return json
     }
   },
   expect: chai.expect

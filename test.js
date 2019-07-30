@@ -5,6 +5,10 @@ const { readFile } = require('fs')
 function getGlobal (req, res, next) {
   const global = readFile('global.json', {encoding: 'utf8'}, (e, r) => {
     if (e) {
+      if (e.code === 'ENOENT') {
+        req.global = {}
+        return next()
+      }
       return res.render('error', {
         filename: 'global.json',
         error: e
@@ -26,6 +30,11 @@ function getGlobal (req, res, next) {
 function getEnvironment (req, res, next) {
   const environment = readFile('environment.json', {encoding: 'utf8'}, (e, r) => {
     if (e) {
+      if (e.code === 'ENOENT') {
+        req.environment = {}
+        return next()
+      }
+
       return res.render('error', {
         filename: 'environment.json',
         error: e
@@ -46,7 +55,7 @@ function getEnvironment (req, res, next) {
 
 
 function getScenarios (req, res, next) {
-  const scenarios = readFile(`${req.params[0]}.json`, {encoding: 'utf8'}, (e, r) => {
+  readFile(`${req.params[0]}.json`, {encoding: 'utf8'}, (e, r) => {
     if (e) {
       return res.render('error', {
         filename: `${req.params[0]}.json`,
@@ -55,7 +64,7 @@ function getScenarios (req, res, next) {
     }
 
     try {
-      req.scenarios = JSON.stringify(scenarios)
+      req.scenarios = JSON.parse(r)
     } catch (e) {
       return res.render('error', {
         filename: `${req.params[0]}.json`,
@@ -97,7 +106,6 @@ function executeTest (req, res, next) {
 }
 
 function render (req, res, next) {
-  console.log(req.result)
   res.render('test', {
     filename: req.params[0],
     result: req.result
