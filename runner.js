@@ -28,17 +28,18 @@ module.exports = function runner (options) {
   var fail = 0
   var pass = 0
 
-  Object.keys(options.responses).forEach(key => {
+  Object.keys(options.scenarios).forEach(key => {
     const sandbox = {
       chai,
       console,
       fail: 0,
       pass: 0,
       tests: [],
-      status: 200,
+      status: options.scenarios[key].status || 200,
+      requests: optiones.scenarios[key].requests || {},
       environment: cloneDeep(options.environment),
       global: cloneDeep(options.global),
-      response: options.responses[key]
+      response: options.scenarios[key].response
     }
 
     vm.createContext(sandbox)
@@ -47,8 +48,15 @@ module.exports = function runner (options) {
     script.runInContext(sandbox)
 
     tests[key] = {
-      pass: sandbox.pass,
-      fail: sandbox.fail,
+      expected: {
+        pass: options.scenarios[key].pass,
+        fail: options.scenarios[key].fail
+      },
+      actual: {
+        pass: sandbox.pass,
+        fail: sandbox.fail
+      },
+      
       tests: sandbox.tests
     }
     fail += sandbox.fail

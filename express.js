@@ -1,9 +1,11 @@
 var express = require('express')
+const { join } = require('path')
 
 var app = express()
 app.set('view engine', 'ejs')
-app.use(express.static('./node_modules/postmoon/public'))
-app.set('views', './node_modules/postmoon/views')
+app.use(express.static(join(__dirname, 'public')))
+app.set('views', join(__dirname, 'views'))
+
 module.exports = app
 
 app.use((req, res, next) => {
