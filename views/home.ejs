@@ -1,16 +1,15 @@
 <%- include('header') %>
 
 <header>
-  <span>
-      PostMoon tests your tests
-  </span>
+    PostMoon
 </header>
 
+<h3>Tests:</h3>
 <% if (test.length) { %>
    <ul class="testLists">
    <% test.forEach( (e) => { %>
       <li>
-        <a href="/test/<%= e %>">
+        <a href="/<%= e %>">
           <%= e %>
         </a>
     </li>

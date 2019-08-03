@@ -10,78 +10,66 @@ const pmScript = new vm.Script(pm, {
 })
 
 module.exports = function runner (options) {
-  try {
-    var script = new vm.Script(options.test, {
-      filename: options.filename + '.js'
-    })
-  } catch (e) {
-    return {
-      error: {
-        message: e.message,
-        stack: e.stack
-      }
-    }
-  }
-
-  const tests = {}
   var fail = 0
   var pass = 0
 
-  Object.keys(options.scenarios).forEach(key => {
-    const sandbox = {
+  const sandbox = {
+    __pm: {
       chai,
-      console,
       fail: 0,
       pass: 0,
       tests: [],
-      status: options.scenarios[key].status || 200,
-      requests: options.scenarios[key].requests || {},
-      environment: options.scenarios[key].environment || cloneDeep(options.environment),
-      global: options.scenarios[key].global || cloneDeep(options.global),
-      json: options.scenarios[key].response || {}
-    }
-
-    vm.createContext(sandbox)
-
-    pmScript.runInContext(sandbox)
-    try {
-      script.runInContext(sandbox)
-    } catch (e) {
-      sandbox.tests.push({
-        test: 'script',
-        error: e
-      })
-      tests[key] = {
-        pass: sandbox.pass,
-        fail: sandbox.fail + 1,
-        tests: sandbox.tests
-      }
-      fail += sandbox.fail + 1
-      pass += sandbox.pass
-      return
-    }
-
-    tests[key] = {
-      expected: {
-        pass: options.scenarios[key].pass,
-        fail: options.scenarios[key].fail
+      environment: {},
+      global: {},
+      response: {
+        status: 200
       },
-      actual: {
-        pass: sandbox.pass,
-        fail: sandbox.fail
-      },
-
-      tests: sandbox.tests
-    }
-    fail += sandbox.fail
-    pass += sandbox.pass
-  })
-
-
-  return {
-    fail,
-    pass,
-    tests
+      json: options.response
+    },
+    console,
   }
 
+  var jss = []
+
+  options.jss.forEach(js => {
+    console.log(js)
+    try {
+      js = {
+        filename: js.filename,
+        script: new vm.Script(js.data, {
+          filename: js.filename
+        })
+      }
+      jss.push(js)
+    } catch (e) {
+      console.log(e)
+      sandbox.__pm.fail++
+      sandbox.__pm.tests.push({
+        test: js.filename,
+        error: e
+      })
+    }
+  })
+
+  vm.createContext(sandbox)
+
+  pmScript.runInContext(sandbox)
+
+  jss.forEach(js => {
+    console.log(js.filename)
+    try {
+      js.script.runInContext(sandbox)
+    } catch (e) {
+      sandbox.__pm.fail++
+      sandbox.__pm.tests.push({
+        test: js.filename,
+        error: e
+      })
+    }
+  })
+  return {
+    fail: sandbox.__pm.fail,
+    pass: sandbox.__pm.pass,
+    tests: sandbox.__pm.tests
+  }
 }

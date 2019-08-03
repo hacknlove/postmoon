@@ -2,121 +2,24 @@ const glob = require('glob')
 const runner = require('./runner')
 const { readFile } = require('fs')
 
-function getGlobal (req, res, next) {
-  const global = readFile('global.json', {encoding: 'utf8'}, (e, r) => {
-    if (e) {
-      if (e.code === 'ENOENT') {
-        req.global = {}
-        return next()
-      }
-      return res.render('error', {
-        filename: 'global.json',
-        error: e
-      })
-    }
-
-    try {
-      req.global = JSON.stringify(global)
-    } catch (e) {
-      return res.render('error', {
-        filename: 'global.json',
-        error: e
-      })
-    }
-    next()
-  })
-}
-
-function getEnvironment (req, res, next) {
-  const environment = readFile('environment.json', {encoding: 'utf8'}, (e, r) => {
-    if (e) {
-      if (e.code === 'ENOENT') {
-        req.environment = {}
-        return next()
-      }
-
-      return res.render('error', {
-        filename: 'environment.json',
-        error: e
-      })
-    }
-
-    try {
-      req.environment = JSON.stringify(environment)
-    } catch (e) {
-      return res.render('error', {
-        filename: 'environment.json',
-        error: e
-      })
-    }
-    next()
-  })
-}
-
-
 function getScenarios (req, res, next) {
-  readFile(`${req.params[0]}.json`, {encoding: 'utf8'}, (e, r) => {
+  glob(`${req.params.test}/*.json`, (e, r) => {
     if (e) {
-      return res.render('error', {
-        filename: `${req.params[0]}.json`,
-        error: e
-      })
+      return res.render('error', e)
     }
-
-    try {
-      req.scenarios = JSON.parse(r)
-    } catch (e) {
-      return res.render('error', {
-        filename: `${req.params[0]}.json`,
-        error: e
-      })
-    }
-    next()
-  })
-}
-
-function getTest (req, res, next) {
-  readFile(`${req.params[0]}.js`, {encoding: 'utf8'}, (e, data) => {
-    if (e) {
-      return res.render('error', {
-        filename: req.params[0],
-        error: e
-      })
-    }
-    req.file = data
-    next()
-  })
-}
-
-function executeTest (req, res, next) {
-  req.result = runner({
-    filename: req.params[0],
-    test: req.file,
-    scenarios: req.scenarios,
-    global: req.global,
-    environment: req.environment
-  })
-  if (req.result.error) {
-    return res.render('error', {
-      filename: `${req.params[0]}.js`,
-      error: req.result.error
+    r = r.map(e => {
+      e = e.substring(req.params.test.length + 1, e.length - 5)
+      if (e === '.') {
+        e = ''
+      }
+      return e
     })
-  }
-  next()
-}
-
-function render (req, res, next) {
-  res.render('test', {
-    filename: req.params[0],
-    result: req.result
+    res.render('test', {
+      test: req.params.test,
+      scenarios: r
+    })
   })
 }
 
-module.exports = [
-  getGlobal,
-  getEnvironment,
-  getScenarios,
-  getTest,
-  executeTest,
-  render
-]
+
+module.exports = getScenarios

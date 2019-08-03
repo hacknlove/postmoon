@@ -1,0 +1,34 @@
+<%- include('header') %>
+
+<header class="<%= result.fail ? 'rojo' : 'verde'%>">
+    <a href="/">PostMoon</a>
+    >
+    <a href="/<%= test %>"><%= test %></a>
+    >
+    <%= scenario %>
+</header>
+
+<h3>Results</h3>
+
+<section class="<%= result.fail ? 'rojo' : 'verde'%>">
+  <div>
+    <p><%= result.pass %><i class="<%= result.pass ? 'verde' : ''%>">✔</i></p>
+    <p><%= result.fail %><i class="<%= result.fail ? 'rojo' : ''%>">✗</i></p>
+  </div>
+  <% if (result.tests.length) { %>
+    <ul>
+      <% result.tests.forEach(function (test) { %>
+        <li class="<%=
+          test.error ? 'rojo' : 'verde'
+        %>"> <%= test.test %>
+          <% if (test.error) { %><br>
+            <code class="rojo"><%= test.error.message %></code>
+          <% } %>
+          </li>
+      <% }) %>
+    </ul>
+  <% } %>
+  </section>
+
+
+<%- include('footer') %>
